@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  payment-app:
+    build:
+      context: ../target
+      dockerfile: ../docker/Dockerfile
+    env_file:
+      - ".env"
+    depends_on:
+      - datasource
+    ports:
+      - "8080:8080"
+
+  datasource:
+    image: postgres:16.0-alpine
+    container_name: ${DATASOURCE_HOST}
+    env_file:
+      - ".env"
+    environment:
+      POSTGRES_PASSWORD: ${DATASOURCE_PASSWORD}
+      POSTGRES_USER: ${DATASOURCE_USERNAME}
+      POSTGRES_DB: ${DATASOURCE_DATABASE}
+    expose:
+      - "5432"
