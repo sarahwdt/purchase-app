@@ -10,7 +10,7 @@ services:
     depends_on:
       - datasource
     ports:
-      - "8080:8080"
+      - ${APPLICATION_PORT}:${APPLICATION_PORT}
 
   datasource:
     image: postgres:16.0-alpine
