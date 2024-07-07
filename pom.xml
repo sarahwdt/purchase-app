@@ -12,10 +12,12 @@
     <artifactId>payment-test-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>payment-test-app</name>
+
     <description>payment-test-app</description>
     <properties>
         <java.version>21</java.version>
     </properties>
+
     <dependencies>
         <!-- spring modules -->
         <dependency>
@@ -53,6 +55,20 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
             <scope>test</scope>
         </dependency>
         <!-- tests -->
