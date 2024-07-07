@@ -5,14 +5,14 @@ import org.leroyjenkins.paymenttestapp.exception.TaxCalculationException;
 
 import java.math.BigDecimal;
 
-public interface TaxRegistrar {
+public interface TaxPercentageService {
     /**
      * Check is tax number format registered in system
      *
      * @param taxNumber tax number to check
      * @return is tax number registered in system
      */
-    boolean isTaxPatternRegistered(@Nonnull String taxNumber);
+    boolean isTaxNumberPatternRegistered(@Nonnull String taxNumber);
 
     /**
      * Get tax percent for tax number

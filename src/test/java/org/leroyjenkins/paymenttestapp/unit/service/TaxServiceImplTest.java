@@ -40,7 +40,7 @@ class TaxServiceImplTest {
     @ValueSource(booleans = {true, false})
     void Should_DelegateToTaxRegistrar_When_isTaxCanBeCalculatedIsCalled(boolean taxRegistrarResult) {
         String taxNumber = "tax-number";
-        when(taxPercentageService.isTaxPatternRegistered(taxNumber)).thenReturn(taxRegistrarResult);
+        when(taxPercentageService.isTaxNumberPatternRegistered(taxNumber)).thenReturn(taxRegistrarResult);
 
         boolean actualResult = taxService.isTaxCanBeCalculated(taxNumber);
 
