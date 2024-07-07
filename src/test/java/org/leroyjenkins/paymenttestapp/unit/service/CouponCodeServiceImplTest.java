@@ -31,6 +31,7 @@ class CouponCodeServiceImplTest extends AbstractUnitTest {
     @Mock
     private BigDecimal mockedPrice;
     @Mock
+    // This is not actually a mock, but we use @Mock annotation for @InjectMocks injection
     private static MathContext mathContext = new MathContext(PRECISION, ROUNDING_MODE);
 
     @InjectMocks

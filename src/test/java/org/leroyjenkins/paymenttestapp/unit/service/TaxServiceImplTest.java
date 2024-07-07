@@ -18,7 +18,7 @@ import java.math.RoundingMode;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class TaxServiceImplTest extends AbstractUnitTest {
     private final static int PRECISION = 18;
@@ -29,6 +29,8 @@ class TaxServiceImplTest extends AbstractUnitTest {
     // This is not actually a mock, but we use @Mock annotation for @InjectMocks injection
     @Mock
     private static MathContext mathContext = new MathContext(PRECISION, ROUNDING_MODE);
+    @Mock
+    private BigDecimal mockPrice;
 
     @InjectMocks
     private TaxServiceImpl taxService;
@@ -78,5 +80,17 @@ class TaxServiceImplTest extends AbstractUnitTest {
         when(taxPercentageService.getTaxPercent(taxNumber)).thenThrow(expectedException);
 
         assertThatThrownByIsTheSameAs(() -> taxService.applyTax(price, taxNumber), expectedException);
+    }
+
+    @Test
+    void Should_UseMathContext_When_applyTaxIsCalled() {
+        String taxNumber = "tax-number";
+        BigDecimal taxPercent = new BigDecimal(20);
+        when(taxPercentageService.getTaxPercent(taxNumber)).thenReturn(taxPercent);
+
+        taxService.applyTax(mockPrice, taxNumber);
+
+        verify(mockPrice, times(1)).multiply(any(), eq(mathContext));
+        verify(mockPrice, times(1)).add(any(), eq(mathContext));
     }
 }
