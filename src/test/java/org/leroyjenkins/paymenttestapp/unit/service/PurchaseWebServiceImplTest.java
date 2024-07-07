@@ -1,7 +1,6 @@
 package org.leroyjenkins.paymenttestapp.unit.service;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -17,18 +16,14 @@ import org.leroyjenkins.paymenttestapp.service.validation.TaxNumberValidator;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
-class PurchaseWebServiceImplTest {
+class PurchaseWebServiceImplTest extends AbstractUnitTest {
     @Mock
     private CouponCodeValidator couponCodeValidator;
     @Mock
@@ -86,9 +81,8 @@ class PurchaseWebServiceImplTest {
                     .when(purchaseService).calculatePrice(request.productId(), request.taxNumber(), request.couponCode());
         }
 
-        assertThatThrownBy(() -> purchaseWebService.calculatePrice(request))
-                .isInstanceOf(expectedException.getClass())
-                .hasMessageContaining(expectedException.getMessage());
+        assertThatThrownByIsTheSameAs(() -> purchaseWebService.calculatePrice(request),
+                expectedException);
     }
 
     private static Stream<Arguments> Should_ReturnCalculatedPrice_When_calculatePriceIsCalledWithValidRequest_Param() {
@@ -181,9 +175,8 @@ class PurchaseWebServiceImplTest {
                     .makePayment(request.productId(), request.taxNumber(), request.couponCode(), request.paymentProcessor());
         }
 
-        assertThatThrownBy(() -> purchaseWebService.makePurchase(request))
-                .isInstanceOf(expectedException.getClass())
-                .hasMessageContaining(expectedException.getMessage());
+        assertThatThrownByIsTheSameAs(() -> purchaseWebService.makePurchase(request),
+                expectedException);
     }
 
     @Test

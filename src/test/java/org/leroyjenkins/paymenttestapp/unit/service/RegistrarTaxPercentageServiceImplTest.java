@@ -1,7 +1,6 @@
 package org.leroyjenkins.paymenttestapp.unit.service;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -9,7 +8,6 @@ import org.leroyjenkins.paymenttestapp.exception.TaxCalculationException;
 import org.leroyjenkins.paymenttestapp.pojo.TaxNumberPredicateTaxPercentage;
 import org.leroyjenkins.paymenttestapp.service.TaxPercentageService;
 import org.leroyjenkins.paymenttestapp.service.impl.RegistrarTaxPercentageServiceImpl;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -17,11 +15,9 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
-@ExtendWith(MockitoExtension.class)
-class RegistrarTaxPercentageServiceImplTest {
+class RegistrarTaxPercentageServiceImplTest extends AbstractUnitTest {
     private static final String TAX_NUMBER_1 = "tax-number-1";
     private static final String TAX_NUMBER_2 = "tax-number-2";
     private static final Predicate<String> TAX_NUMBER_PREDICATE_1 = s -> Objects.equals(TAX_NUMBER_1, s);
@@ -71,9 +67,7 @@ class RegistrarTaxPercentageServiceImplTest {
     void Should_ThrowException_When_getTaxPercentagesCalledWithUnknownTaxNumber() {
         String unknownTaxNumber = "unknown-tax-number";
 
-        assertThatThrownBy(() -> taxPercentageService.getTaxPercent(unknownTaxNumber))
-                .isInstanceOf(TaxCalculationException.class)
-                .hasMessageContaining(unknownTaxNumber)
-                .hasMessageContaining("Tax cannot be calculated");
+        assertThatThrownByIsTheSameAs(() -> taxPercentageService.getTaxPercent(unknownTaxNumber),
+                new TaxCalculationException(unknownTaxNumber));
     }
 }

@@ -1,29 +1,26 @@
 package org.leroyjenkins.paymenttestapp.unit.service;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.leroyjenkins.paymenttestapp.exception.BusinessLogicException;
 import org.leroyjenkins.paymenttestapp.exception.TaxCalculationException;
 import org.leroyjenkins.paymenttestapp.service.TaxPercentageService;
 import org.leroyjenkins.paymenttestapp.service.impl.TaxServiceImpl;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-@ExtendWith({MockitoExtension.class})
-class TaxServiceImplTest {
+class TaxServiceImplTest extends AbstractUnitTest {
     private final static int PRECISION = 18;
     private final static RoundingMode ROUNDING_MODE = RoundingMode.HALF_EVEN;
 
@@ -77,10 +74,9 @@ class TaxServiceImplTest {
     void Should_ThrowTaxCalculationException_When_applyTaxIsCalledAndTaxRegistrarThrowsException() {
         String taxNumber = "tax-number";
         BigDecimal price = new BigDecimal(100);
-        Throwable expectedException = new TaxCalculationException(taxNumber);
+        BusinessLogicException expectedException = new TaxCalculationException(taxNumber);
         when(taxPercentageService.getTaxPercent(taxNumber)).thenThrow(expectedException);
 
-        assertThatThrownBy(() -> taxService.applyTax(price, taxNumber))
-                .isEqualTo(expectedException);
+        assertThatThrownByIsTheSameAs(() -> taxService.applyTax(price, taxNumber), expectedException);
     }
 }

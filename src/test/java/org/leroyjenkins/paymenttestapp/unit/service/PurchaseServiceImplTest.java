@@ -1,7 +1,6 @@
 package org.leroyjenkins.paymenttestapp.unit.service;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -13,17 +12,14 @@ import org.leroyjenkins.paymenttestapp.service.PriceCalculationService;
 import org.leroyjenkins.paymenttestapp.service.impl.PurchaseServiceImpl;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
-class PurchaseServiceImplTest {
+class PurchaseServiceImplTest extends AbstractUnitTest {
     @Mock
     private PaymentProcessingService paymentProcessingService;
     @Mock
@@ -53,9 +49,8 @@ class PurchaseServiceImplTest {
         EntityNotFoundException expectedException = new EntityNotFoundException("Product", productId);
         when(priceCalculationService.calculatePrice(productId, taxNumber, couponCode)).thenThrow(expectedException);
 
-        assertThatThrownBy(() -> purchaseService.calculatePrice(productId, taxNumber, couponCode))
-                .isInstanceOf(expectedException.getClass())
-                .hasMessageContaining(expectedException.getMessage());
+        assertThatThrownByIsTheSameAs(() -> purchaseService.calculatePrice(productId, taxNumber, couponCode),
+                expectedException);
     }
 
     @Test
@@ -105,8 +100,7 @@ class PurchaseServiceImplTest {
                     .processPayment(calculatedPrice, taxNumber, paymentProcessor);
         }
 
-        assertThatThrownBy(() -> purchaseService.makePayment(productId, taxNumber, couponCode, paymentProcessor))
-                .isInstanceOf(expectedException.getClass())
-                .hasMessageContaining(expectedException.getMessage());
+        assertThatThrownByIsTheSameAs(() -> purchaseService.makePayment(productId, taxNumber, couponCode, paymentProcessor),
+                expectedException);
     }
 }
