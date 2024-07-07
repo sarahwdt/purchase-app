@@ -6,7 +6,7 @@ public class PaymentProcessingException extends BusinessLogicException {
     private static final String ERROR_MESSAGE = "Payment processing failed";
 
     public PaymentProcessingException() {
-        super(ERROR_MESSAGE, null, null);
+        super(ERROR_MESSAGE, ERROR_MESSAGE, null);
     }
 
     public PaymentProcessingException(String message) {
