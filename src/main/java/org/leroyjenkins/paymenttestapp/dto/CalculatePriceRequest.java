@@ -2,7 +2,9 @@ package org.leroyjenkins.paymenttestapp.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.annotation.Nullable;
+import lombok.Builder;
 
+@Builder(toBuilder = true)
 public record CalculatePriceRequest(
         @JsonProperty(value = "product")
         Integer productId,
