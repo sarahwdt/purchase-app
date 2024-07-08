@@ -17,6 +17,10 @@ public class PaymentAdaptersRegistrarImpl implements PaymentAdaptersRegistrar {
 
     @Autowired
     // Autowire all PaymentProcessorAdapters and store it
+    public PaymentAdaptersRegistrarImpl(Set<PaymentProcessorAdapter> adapters) {
+        collectAdapters(adapters);
+    }
+
     protected void collectAdapters(Set<PaymentProcessorAdapter> adapters) {
         for (PaymentProcessorAdapter adapter : adapters) {
             if (processorAdapters.containsKey(adapter.getProcessorName())) {
