@@ -5,6 +5,11 @@ application:
   rounding-mode:
     default: HALF_EVEN
 
+  serialization:
+    money:
+      scale:
+        default: 2
+
 server:
   port: 8090
 

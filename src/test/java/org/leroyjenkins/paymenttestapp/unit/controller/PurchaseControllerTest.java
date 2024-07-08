@@ -4,23 +4,30 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.leroyjenkins.paymenttestapp.configuration.SerializationConfiguration;
 import org.leroyjenkins.paymenttestapp.dto.CalculatePriceRequest;
+import org.leroyjenkins.paymenttestapp.dto.CalculatePriceResponse;
 import org.leroyjenkins.paymenttestapp.dto.MakePurchaseRequest;
 import org.leroyjenkins.paymenttestapp.exception.*;
 import org.leroyjenkins.paymenttestapp.service.PurchaseWebService;
 import org.leroyjenkins.paymenttestapp.unit.AbstractMvcTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.stream.Stream;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+@Import({SerializationConfiguration.class})
 class PurchaseControllerTest extends AbstractMvcTest {
     @MockBean
     private PurchaseWebService purchaseWebService;
@@ -50,6 +57,34 @@ class PurchaseControllerTest extends AbstractMvcTest {
                 .content(objectMapper.writeValueAsBytes(CalculatePriceRequest.builder().build()));
 
         assertErrorResponse(request, exception);
+    }
+
+    private static Stream<Arguments>
+    Should_ReturnPrice_When_calculatePriceIsRequestedAndPurchaseWebServiceReturnedPrice_Param() {
+        return Stream.of(
+                Arguments.of(CalculatePriceResponse.builder().calculatedPrice(BigDecimal.valueOf(100)).build(),
+                        BigDecimal.valueOf(100.0)),
+                Arguments.of(CalculatePriceResponse.builder().calculatedPrice(BigDecimal.valueOf(0)).build(),
+                        BigDecimal.valueOf(0.0)),
+                Arguments.of(CalculatePriceResponse.builder().calculatedPrice(BigDecimal.valueOf(100.23333333)).build(),
+                        BigDecimal.valueOf(100.23).setScale(2, RoundingMode.HALF_EVEN))
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("Should_ReturnPrice_When_calculatePriceIsRequestedAndPurchaseWebServiceReturnedPrice_Param")
+    void Should_ReturnPrice_When_calculatePriceIsRequestedAndPurchaseWebServiceReturnedPrice(
+            CalculatePriceResponse response, BigDecimal expectedPrice)
+            throws Exception {
+        CalculatePriceRequest request = CalculatePriceRequest.builder().build();
+        when(purchaseWebService.calculatePrice(any(CalculatePriceRequest.class))).thenReturn(response);
+
+        mockMvc.perform(post("/calculate-price").contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsBytes(request)))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.calculatedPrice").isNumber())
+                .andExpect(jsonPath("$.calculatedPrice").value(expectedPrice));
     }
 
     private static Stream<Arguments>
