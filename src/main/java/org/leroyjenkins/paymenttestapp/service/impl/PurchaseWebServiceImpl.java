@@ -15,7 +15,6 @@ import org.leroyjenkins.paymenttestapp.service.validation.TaxNumberValidator;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 @Service
 @Slf4j
@@ -25,7 +24,6 @@ public class PurchaseWebServiceImpl implements PurchaseWebService {
     private final TaxNumberValidator taxNumberValidator;
     private final PaymentProcessorValidator paymentProcessorValidator;
     private final PurchaseService purchaseService;
-    private final RoundingMode roundingMode;
 
     @Override
     @Nonnull
@@ -45,7 +43,7 @@ public class PurchaseWebServiceImpl implements PurchaseWebService {
                 calculatePriceRequest.productId(),
                 calculatePriceRequest.taxNumber(),
                 calculatePriceRequest.couponCode());
-        return new CalculatePriceResponse(calculatedPrice.setScale(2, roundingMode));
+        return new CalculatePriceResponse(calculatedPrice);
     }
 
     @Override
