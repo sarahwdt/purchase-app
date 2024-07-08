@@ -3,7 +3,7 @@ package org.leroyjenkins.paymenttestapp.unit.service.payment.processor;
 import org.junit.jupiter.api.Test;
 import org.leroyjenkins.paymenttestapp.exception.PayPalPaymentException;
 import org.leroyjenkins.paymenttestapp.service.payment.processor.PayPalPaymentProcessor;
-import org.leroyjenkins.paymenttestapp.unit.service.AbstractUnitTest;
+import org.leroyjenkins.paymenttestapp.unit.AbstractUnitTest;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

@@ -13,6 +13,7 @@ import org.leroyjenkins.paymenttestapp.repository.ProductRepository;
 import org.leroyjenkins.paymenttestapp.service.CouponCodeService;
 import org.leroyjenkins.paymenttestapp.service.TaxService;
 import org.leroyjenkins.paymenttestapp.service.impl.PriceCalculationServiceImpl;
+import org.leroyjenkins.paymenttestapp.unit.AbstractUnitTest;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 

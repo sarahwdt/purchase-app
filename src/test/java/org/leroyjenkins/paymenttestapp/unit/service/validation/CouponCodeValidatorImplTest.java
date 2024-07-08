@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.leroyjenkins.paymenttestapp.exception.CouponCodeNotExistException;
 import org.leroyjenkins.paymenttestapp.service.CouponCodeService;
 import org.leroyjenkins.paymenttestapp.service.validation.impl.CouponCodeValidatorImpl;
-import org.leroyjenkins.paymenttestapp.unit.service.AbstractUnitTest;
+import org.leroyjenkins.paymenttestapp.unit.AbstractUnitTest;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 

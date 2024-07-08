@@ -2,7 +2,7 @@ package org.leroyjenkins.paymenttestapp.unit.service.payment.processor;
 
 import org.junit.jupiter.api.Test;
 import org.leroyjenkins.paymenttestapp.service.payment.processor.StripePaymentProcessor;
-import org.leroyjenkins.paymenttestapp.unit.service.AbstractUnitTest;
+import org.leroyjenkins.paymenttestapp.unit.AbstractUnitTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

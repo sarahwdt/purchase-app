@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.leroyjenkins.paymenttestapp.exception.ApplicationBootstrapError;
 import org.leroyjenkins.paymenttestapp.service.payment.PaymentProcessorAdapter;
 import org.leroyjenkins.paymenttestapp.service.payment.impl.PaymentAdaptersRegistrarImpl;
-import org.leroyjenkins.paymenttestapp.unit.service.AbstractUnitTest;
+import org.leroyjenkins.paymenttestapp.unit.AbstractUnitTest;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 

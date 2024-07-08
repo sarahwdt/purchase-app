@@ -9,6 +9,7 @@ import org.leroyjenkins.paymenttestapp.exception.BusinessLogicException;
 import org.leroyjenkins.paymenttestapp.exception.TaxCalculationException;
 import org.leroyjenkins.paymenttestapp.service.TaxPercentageService;
 import org.leroyjenkins.paymenttestapp.service.impl.TaxServiceImpl;
+import org.leroyjenkins.paymenttestapp.unit.AbstractUnitTest;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 

@@ -13,6 +13,7 @@ import org.leroyjenkins.paymenttestapp.exception.PaymentProcessorNotRegisteredEx
 import org.leroyjenkins.paymenttestapp.service.impl.PaymentProcessingServiceImpl;
 import org.leroyjenkins.paymenttestapp.service.payment.PaymentAdaptersRegistrar;
 import org.leroyjenkins.paymenttestapp.service.payment.PaymentProcessorAdapter;
+import org.leroyjenkins.paymenttestapp.unit.AbstractUnitTest;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 

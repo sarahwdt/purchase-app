@@ -10,6 +10,7 @@ import org.leroyjenkins.paymenttestapp.exception.BusinessLogicException;
 import org.leroyjenkins.paymenttestapp.exception.CouponCodeNotExistException;
 import org.leroyjenkins.paymenttestapp.repository.CouponCodeRepository;
 import org.leroyjenkins.paymenttestapp.service.impl.CouponCodeServiceImpl;
+import org.leroyjenkins.paymenttestapp.unit.AbstractUnitTest;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 

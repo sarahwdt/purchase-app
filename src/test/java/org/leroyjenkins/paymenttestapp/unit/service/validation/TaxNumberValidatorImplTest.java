@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.leroyjenkins.paymenttestapp.exception.TaxCalculationException;
 import org.leroyjenkins.paymenttestapp.service.TaxService;
 import org.leroyjenkins.paymenttestapp.service.validation.impl.TaxNumberValidatorImpl;
-import org.leroyjenkins.paymenttestapp.unit.service.AbstractUnitTest;
+import org.leroyjenkins.paymenttestapp.unit.AbstractUnitTest;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 

@@ -10,6 +10,7 @@ import org.leroyjenkins.paymenttestapp.exception.PaymentProcessingException;
 import org.leroyjenkins.paymenttestapp.service.PaymentProcessingService;
 import org.leroyjenkins.paymenttestapp.service.PriceCalculationService;
 import org.leroyjenkins.paymenttestapp.service.impl.PurchaseServiceImpl;
+import org.leroyjenkins.paymenttestapp.unit.AbstractUnitTest;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 

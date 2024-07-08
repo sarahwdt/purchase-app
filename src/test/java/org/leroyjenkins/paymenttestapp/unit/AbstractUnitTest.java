@@ -1,4 +1,4 @@
-package org.leroyjenkins.paymenttestapp.unit.service;
+package org.leroyjenkins.paymenttestapp.unit;
 
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.extension.ExtendWith;

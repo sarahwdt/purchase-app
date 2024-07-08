@@ -8,6 +8,7 @@ import org.leroyjenkins.paymenttestapp.exception.TaxCalculationException;
 import org.leroyjenkins.paymenttestapp.pojo.TaxNumberPredicateTaxPercentage;
 import org.leroyjenkins.paymenttestapp.service.TaxPercentageService;
 import org.leroyjenkins.paymenttestapp.service.impl.RegistrarTaxPercentageServiceImpl;
+import org.leroyjenkins.paymenttestapp.unit.AbstractUnitTest;
 
 import java.math.BigDecimal;
 import java.util.Objects;

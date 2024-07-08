@@ -5,7 +5,7 @@ import org.leroyjenkins.paymenttestapp.dto.PaymentProcessingResult;
 import org.leroyjenkins.paymenttestapp.exception.PayPalPaymentException;
 import org.leroyjenkins.paymenttestapp.service.payment.adapter.PayPalPaymentProcessorAdapterImpl;
 import org.leroyjenkins.paymenttestapp.service.payment.processor.PayPalPaymentProcessor;
-import org.leroyjenkins.paymenttestapp.unit.service.AbstractUnitTest;
+import org.leroyjenkins.paymenttestapp.unit.AbstractUnitTest;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 

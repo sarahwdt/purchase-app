@@ -13,6 +13,7 @@ import org.leroyjenkins.paymenttestapp.service.impl.PurchaseWebServiceImpl;
 import org.leroyjenkins.paymenttestapp.service.validation.CouponCodeValidator;
 import org.leroyjenkins.paymenttestapp.service.validation.PaymentProcessorValidator;
 import org.leroyjenkins.paymenttestapp.service.validation.TaxNumberValidator;
+import org.leroyjenkins.paymenttestapp.unit.AbstractUnitTest;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 

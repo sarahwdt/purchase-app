@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.leroyjenkins.paymenttestapp.dto.PaymentProcessingResult;
 import org.leroyjenkins.paymenttestapp.service.payment.adapter.StripePaymentProcessorAdapterImpl;
 import org.leroyjenkins.paymenttestapp.service.payment.processor.StripePaymentProcessor;
-import org.leroyjenkins.paymenttestapp.unit.service.AbstractUnitTest;
+import org.leroyjenkins.paymenttestapp.unit.AbstractUnitTest;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
