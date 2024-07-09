@@ -1,12 +1,12 @@
 package org.leroyjenkins.paymenttestapp.service.payment.adapter;
 
 import jakarta.annotation.Nonnull;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.leroyjenkins.paymenttestapp.dto.PaymentProcessingResult;
 import org.leroyjenkins.paymenttestapp.exception.PayPalPaymentException;
 import org.leroyjenkins.paymenttestapp.service.payment.PaymentProcessorAdapter;
 import org.leroyjenkins.paymenttestapp.service.payment.processor.PayPalPaymentProcessor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -14,10 +14,15 @@ import java.math.RoundingMode;
 
 @Service
 @Slf4j
-@RequiredArgsConstructor
 public class PayPalPaymentProcessorAdapterImpl implements PaymentProcessorAdapter {
     private final PayPalPaymentProcessor payPalPaymentProcessor;
     private final RoundingMode roundingMode;
+
+    public PayPalPaymentProcessorAdapterImpl(PayPalPaymentProcessor payPalPaymentProcessor,
+                                             @Qualifier("mathContextRoundingMode") RoundingMode roundingMode) {
+        this.payPalPaymentProcessor = payPalPaymentProcessor;
+        this.roundingMode = roundingMode;
+    }
 
     @Override
     @Nonnull
